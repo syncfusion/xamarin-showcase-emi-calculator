@@ -38,13 +38,13 @@ This project uses the following Syncfusion controls:
 
 **Android**
 
-<img src="images/android/home.png" Width="210" /> <img src="images/android/chart.jpg" Width="210" /> <img src="images/android/grid.png" Width="210" /> <img src="images/android/share.png" Width="210" />
-<img src="images/android/excel.png" Width="210" />
+<img src="images/Android/home.png" Width="210" /> <img src="images/Android/chart.jpg" Width="210" /> <img src="images/Android/grid.png" Width="210" /> <img src="images/Android/share.png" Width="210" />
+<img src="images/Android/excel.png" Width="210" />
 
 **iOS**
 
-<img src="images/ios/home.png" Width="210" /> <img src="images/ios/chart.png" Width="210" /> <img src="images/ios/grid.png" Width="210" /> <img src="images/ios/share.png" Width="210" />
-<img src="images/ios/excel.png" Width="210" />
+<img src="images/iOS/home.png" Width="210" /> <img src="images/iOS/chart.png" Width="210" /> <img src="images/iOS/grid.png" Width="210" /> <img src="images/iOS/share.png" Width="210" />
+<img src="images/iOS/excel.png" Width="210" />
 
 ## Supported platforms: ##
 
