@@ -18,12 +18,12 @@ The EMI (Equated Monthly Instalment) Calculator is an application developed usin
 
 This project uses the following Syncfusion controls:
 
-* SfNumericUpDown
-* SfChart
-* SfDataGrid
-* SfTabView
-* XlsIO
-* SfButton
+* [SfNumericUpDown](https://www.syncfusion.com/xamarin-ui-controls/numericupdown)
+* [SfChart](https://www.syncfusion.com/xamarin-ui-controls/charts)
+* [SfDataGrid](https://www.syncfusion.com/xamarin-ui-controls/datagrid)
+* [SfTabView](https://www.syncfusion.com/xamarin-ui-controls/tabbed-view)
+* [XlsIO](https://www.syncfusion.com/excel-framework/xamarin)
+* [SfButton](https://www.syncfusion.com/xamarin-ui-controls/button)
 
 ## Key features
 
