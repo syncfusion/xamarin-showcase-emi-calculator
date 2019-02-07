@@ -52,7 +52,6 @@ This project uses the following Syncfusion controls:
 | --------- | ------------------ |
 | Android   | API level 19 and later versions |
 | iOS | iOS 9.0 and later versions |
-| UWP | Windows 10 devices |
 
 Please refer to the link for more information:
 
