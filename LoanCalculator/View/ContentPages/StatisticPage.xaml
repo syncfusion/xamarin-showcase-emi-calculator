@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.StatisticPage" xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" xmlns:dataGrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" Icon="Date.png" Title="Amortization Details" BackgroundColor="#252C48">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Export.png" Order="Primary" Priority="0" Command="{Binding ExportStatisticsCommand}" CommandParameter="{Binding Source={x:Reference DataGrid}}">
+            <ToolbarItem.Text>
+                <OnPlatform x:TypeArguments="x:String" WinPhone="Export" />
+            </ToolbarItem.Text>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <tabView:SfTabView VisibleHeaderCount="2" BackgroundColor="#1B1F35">
+        <tabView:SfTabView.SelectionIndicatorSettings>
+            <tabView:SelectionIndicatorSettings Color="#4CC2C7" />
+        </tabView:SfTabView.SelectionIndicatorSettings>
+        <tabView:SfTabView.Resources>
+            <ResourceDictionary>
+                <Color x:Key="TabItemFontColor">#BFC9F6</Color>
+                <x:Double x:Key="TabItemFontSize">14</x:Double>
+            </ResourceDictionary>
+        </tabView:SfTabView.Resources>
+        <tabView:SfTabItem Title="Chart" TitleFontColor="{StaticResource TabItemFontColor}" TitleFontSize="{StaticResource TabItemFontSize}" SelectionColor="{StaticResource TabItemFontColor}">
+            <tabView:SfTabItem.Content>
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Style x:Key="BaseLabelStyle" TargetType="Label">
+                                <Setter Property="TextColor" Value="#BFC9F6" />
+                                <Setter Property="FontSize" Value="15" />
+                                <Setter Property="HorizontalOptions" Value="Center" />
+                                <Setter Property="VerticalOptions" Value="Center" />
+                            </Style>
+                        </ResourceDictionary>
+                        <Color x:Key="PickerBackgroundColor">#F2F2F2</Color>
+                        <Color x:Key="PickerTextColor">#434343</Color>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="37" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Payments starting from" VerticalOptions="Start" Margin="0,6,0,0" Style="{StaticResource BaseLabelStyle}" />
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" Padding="10,0,0,0" Spacing="10" HorizontalOptions="Center" BackgroundColor="#353D5D">
+                        <Label WidthRequest="200" Text="{Binding PaymentStartDate}" BackgroundColor="#353D5D" TextColor="#DAE1FF" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="15" />
+                        <Button BackgroundColor="#475179" BorderColor="#475179" Command="{Binding ShowHidePickerDialog}" Image="Date.png" Margin="0" WidthRequest="40" />
+                    </StackLayout>
+                    <chart:SfChart Grid.Row="2" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <chart:SfChart.Resources>
+                            <ResourceDictionary>
+                                <DataTemplate x:Key="ToolTipTemplate">
+                                    <Frame BorderColor="#ACB8E7" CornerRadius="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                                        <StackLayout BackgroundColor="#E5EBFF" Orientation="Vertical" Spacing="0" Margin="0" HorizontalOptions="FillAndExpand">
+                                            <StackLayout.Resources>
+                                                <Style TargetType="StackLayout">
+                                                    <Setter Property="Orientation" Value="Horizontal" />
+                                                    <Setter Property="Margin" Value="0" />
+                                                    <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                                                    <Setter Property="Padding" Value="3" />
+                                                </Style>
+                                                <Style x:Key="LabelStyle" TargetType="Label">
+                                                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                                                    <Setter Property="HorizontalOptions" Value="Start" />
+                                                    <Setter Property="FontSize" Value="12" />
+                                                    <Setter Property="TextColor" Value="#202741" />
+                                                </Style>
+                                                <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                                                    <Setter Property="HeightRequest" Value="10" />
+                                                    <Setter Property="WidthRequest" Value="10" />
+                                                    <Setter Property="VerticalOptions" Value="Center" />
+                                                    <Setter Property="HorizontalOptions" Value="Center" />
+                                                </Style>
+                                            </StackLayout.Resources>
+                                            <Label Text="{Binding Year,StringFormat='{0:yyyy}'}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold" Style="{StaticResource LabelStyle}" />
+                                            <StackLayout>
+                                                <BoxView Color="#FC836E" Style="{StaticResource BoxViewStyle}" />
+                                                <Label Text="Interest paid :" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Interest,StringFormat='${0}'}" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <BoxView Color="#43D3CC" Style="{StaticResource BoxViewStyle}" />
+                                                <Label Text="Principal paid :" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Principal,StringFormat='${0}'}" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <BoxView Color="#685EFD" Style="{StaticResource BoxViewStyle}" />
+                                                <Label Text="Balance :" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Balance,StringFormat='${0}'}" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </ResourceDictionary>
+                        </chart:SfChart.Resources>
+                        <chart:SfChart.Margin>
+                            <OnIdiom x:TypeArguments="Thickness" Phone="-10,0,-10,0" />
+                        </chart:SfChart.Margin>
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:DateTimeCategoryAxis PlotOffset="10" AutoScrollingMode="Start" AutoScrollingDelta="10">
+                                <chart:DateTimeCategoryAxis.Title>
+                                    <chart:ChartAxisTitle Text="Years" TextColor="#C0CBF7" />
+                                </chart:DateTimeCategoryAxis.Title>
+                                <chart:DateTimeCategoryAxis.LabelStyle>
+                                    <chart:ChartAxisLabelStyle LabelFormat="yyyy" TextColor="#C0CBF7" />
+                                </chart:DateTimeCategoryAxis.LabelStyle>
+                                <chart:DateTimeCategoryAxis.AxisLineStyle>
+                                    <chart:ChartLineStyle StrokeColor="#475179" StrokeWidth="2" />
+                                </chart:DateTimeCategoryAxis.AxisLineStyle>
+                                <chart:DateTimeCategoryAxis.MajorTickStyle>
+                                    <chart:ChartAxisTickStyle StrokeWidth="0" />
+                                </chart:DateTimeCategoryAxis.MajorTickStyle>
+                            </chart:DateTimeCategoryAxis>
+                        </chart:SfChart.PrimaryAxis>
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis PlotOffset="10" LabelCreated="NumericalAxis_LabelCreated">
+                                <chart:NumericalAxis.Title>
+                                    <chart:ChartAxisTitle Text="Balance" TextColor="#C0CBF7" FontSize="10">
+                                        <chart:ChartAxisTitle.Margin>
+                                            <OnIdiom x:TypeArguments="Thickness">
+                                                <OnIdiom.Phone>
+                                                    <OnPlatform x:TypeArguments="Thickness" Android="9,7,0,7" iOS="4,2,0,2" WinPhone="4,2,0,2" />
+                                                </OnIdiom.Phone>
+                                            </OnIdiom>
+                                        </chart:ChartAxisTitle.Margin>
+                                    </chart:ChartAxisTitle>
+                                </chart:NumericalAxis.Title>
+                                <chart:NumericalAxis.LabelStyle>
+                                    <chart:ChartAxisLabelStyle TextColor="#C0CBF7" />
+                                </chart:NumericalAxis.LabelStyle>
+                                <chart:NumericalAxis.MajorGridLineStyle>
+                                    <chart:ChartLineStyle StrokeWidth="0" />
+                                </chart:NumericalAxis.MajorGridLineStyle>
+                                <chart:NumericalAxis.AxisLineStyle>
+                                    <chart:ChartLineStyle StrokeColor="#475179" StrokeWidth="2" />
+                                </chart:NumericalAxis.AxisLineStyle>
+                                <chart:NumericalAxis.MajorTickStyle>
+                                    <chart:ChartAxisTickStyle StrokeColor="#475179" />
+                                </chart:NumericalAxis.MajorTickStyle>
+                            </chart:NumericalAxis>
+                        </chart:SfChart.SecondaryAxis>
+                        <chart:SfChart.Series>
+                            <chart:StackingColumnSeries ItemsSource="{Binding YearlyPaymentDetails}" XBindingPath="Year" YBindingPath="Interest" Color="#FC836E" Label="Interest paid" EnableTooltip="true" TooltipTemplate="{StaticResource ToolTipTemplate}" />
+                            <chart:StackingColumnSeries ItemsSource="{Binding YearlyPaymentDetails}" XBindingPath="Year" YBindingPath="Principal" Color="#43D3CC" Label="Principal paid" EnableTooltip="true" TooltipTemplate="{StaticResource ToolTipTemplate}" />
+                            <chart:SplineSeries ItemsSource="{Binding YearlyPaymentDetails}" XBindingPath="Year" YBindingPath="Balance" Color="#FFFFFF" Label="Balance" EnableTooltip="true" TooltipTemplate="{StaticResource ToolTipTemplate}">
+                                <chart:SplineSeries.YAxis>
+                                    <chart:NumericalAxis PlotOffset="10" OpposedPosition="True" LabelCreated="NumericalAxis_LabelCreated">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle Text="Payments" TextColor="#C0CBF7" FontSize="10">
+                                                <chart:ChartAxisTitle.Margin>
+                                                    <OnIdiom x:TypeArguments="Thickness">
+                                                        <OnIdiom.Phone>
+                                                            <OnPlatform x:TypeArguments="Thickness" Android="0,7,9,7" iOS="0,2,4,2" WinPhone="0,2,4,2" />
+                                                        </OnIdiom.Phone>
+                                                    </OnIdiom>
+                                                </chart:ChartAxisTitle.Margin>
+                                            </chart:ChartAxisTitle>
+                                        </chart:NumericalAxis.Title>
+                                        <chart:NumericalAxis.LabelStyle>
+                                            <chart:ChartAxisLabelStyle TextColor="#C0CBF7" />
+                                        </chart:NumericalAxis.LabelStyle>
+                                        <chart:NumericalAxis.MajorGridLineStyle>
+                                            <chart:ChartLineStyle StrokeWidth="0" />
+                                        </chart:NumericalAxis.MajorGridLineStyle>
+                                        <chart:NumericalAxis.AxisLineStyle>
+                                            <chart:ChartLineStyle StrokeColor="#475179" StrokeWidth="2" />
+                                        </chart:NumericalAxis.AxisLineStyle>
+                                        <chart:NumericalAxis.MajorTickStyle>
+                                            <chart:ChartAxisTickStyle StrokeColor="#475179" />
+                                        </chart:NumericalAxis.MajorTickStyle>
+                                    </chart:NumericalAxis>
+                                </chart:SplineSeries.YAxis>
+                                <chart:SplineSeries.DataMarker>
+                                    <chart:ChartDataMarker ShowLabel="False" ShowMarker="True" MarkerHeight="15" MarkerWidth="15" MarkerColor="#685EFD" MarkerBorderColor="#FFFFFF" MarkerBorderWidth="2" />
+                                </chart:SplineSeries.DataMarker>
+                            </chart:SplineSeries>
+                        </chart:SfChart.Series>
+                        <chart:SfChart.Legend>
+                            <chart:ChartLegend DockPosition="Bottom" IconHeight="16" IconWidth="16">
+                                <chart:ChartLegend.LabelStyle>
+                                    <chart:ChartLegendLabelStyle FontSize="12" TextColor="#C6D1FF" />
+                                </chart:ChartLegend.LabelStyle>
+                            </chart:ChartLegend>
+                        </chart:SfChart.Legend>
+                        <chart:SfChart.ChartBehaviors>
+                            <chart:ChartTooltipBehavior BackgroundColor="Transparent" BorderColor="Transparent" />
+                            <chart:ChartZoomPanBehavior ZoomMode="X" />
+                        </chart:SfChart.ChartBehaviors>
+                    </chart:SfChart>
+                    <local:CustomDatePicker x:Name="Picker" IsOpen="{Binding PickerVisiblity,Mode=TwoWay}" SelectedItem="{Binding PickerSelectedItem}" BorderColor="#C2C2C2" ShowColumnHeader="false" ShowHeader="false" ShowFooter="True" ColumnHeaderBackgroundColor="{StaticResource PickerBackgroundColor}" BackgroundColor="{StaticResource PickerBackgroundColor}" ColumnHeaderTextColor="{StaticResource PickerTextColor}"
+                        SelectedItemTextColor="{StaticResource PickerTextColor}" UnSelectedItemTextColor="{StaticResource PickerTextColor}" PickerMode="Dialog" HorizontalOptions="Center" VerticalOptions="Center" PickerHeight="300" PickerWidth="300">
+                        <local:CustomDatePicker.Behaviors>
+                            <local:PaymentDateChangedBehavior Command="{Binding PaymentDateSelectionCommand}" />
+                        </local:CustomDatePicker.Behaviors>
+                    </local:CustomDatePicker>
+                </Grid>
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
+        <tabView:SfTabItem Title="Schedule" TitleFontColor="{StaticResource TabItemFontColor}" TitleFontSize="{StaticResource TabItemFontSize}" SelectionColor="{StaticResource TabItemFontColor}">
+            <tabView:SfTabItem.Content>
+                    <dataGrid:SfDataGrid x:Name="DataGrid" ItemsSourceChanged="DataGrid_ItemsSourceChanged"  AutoExpandGroups="False" ItemsSource="{Binding MonthlyPaymentDetails}" ColumnSizer="Star" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" GroupingMode="Multiple">
+                        <dataGrid:SfDataGrid.Resources>
+                            <ResourceDictionary>
+                                <local:PaymentDetailToMonthConverter x:Key="PaymentDetailToMonthConverter" />
+                                <local:FormatAggregate x:Key="customAggregate" />
+                                <x:Double x:Key="headerCellTextSize">15</x:Double>
+                                <x:Double x:Key="cellTextSize">13</x:Double>
+                                <x:String x:Key="format">C</x:String>
+                                <x:String x:Key="sum">{}{Sum:C}</x:String>
+                                <OnIdiom x:Key="isHidden" x:TypeArguments="x:Boolean" Tablet="False" Desktop="False" Phone="True" />
+                            </ResourceDictionary>
+                        </dataGrid:SfDataGrid.Resources>
+                        <dataGrid:SfDataGrid.Columns x:TypeArguments="dataGrid:Columns">
+                            <dataGrid:GridTextColumn MappingName="Month" TextAlignment="Start" Format="MMM" HeaderText="Year" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" ColumnSizer="Auto" AllowSorting="False"/>
+                            <dataGrid:GridTextColumn MappingName="Payment" Format="{StaticResource format}" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" />
+                            <dataGrid:GridTextColumn MappingName="Principal" Format="{StaticResource format}" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" IsHidden="{StaticResource isHidden}" />
+                            <dataGrid:GridTextColumn MappingName="Interest" Format="{StaticResource format}" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" IsHidden="{StaticResource isHidden}" />
+                            <dataGrid:GridTextColumn MappingName="Balance" Format="{StaticResource format}" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" />
+                            <dataGrid:GridTextColumn MappingName="Month" Format="yyyy" HeaderCellTextSize="{StaticResource headerCellTextSize}" CellTextSize="{StaticResource cellTextSize}" IsHidden="True" />
+                        </dataGrid:SfDataGrid.Columns>
+                        <dataGrid:SfDataGrid.GridStyle>
+                            <local:CustomDataGridStyle />
+                        </dataGrid:SfDataGrid.GridStyle>
+                        <dataGrid:SfDataGrid.CaptionSummaryRow>
+                            <dataGrid:GridSummaryRow ShowSummaryInRow="False">
+                                <dataGrid:GridSummaryRow.SummaryColumns>
+                                    <dataGrid:GridSummaryColumn Name="Month" Format="{}{Year}" MappingName="Month" SummaryType="Custom" CustomAggregate="{StaticResource customAggregate}" />
+                                    <dataGrid:GridSummaryColumn Name="Payment" Format="{}{Sum:C}" MappingName="Payment" SummaryType="DoubleAggregate" />
+                                    <dataGrid:GridSummaryColumn Name="Principal" Format="{}{Sum:C}" MappingName="Principal" SummaryType="DoubleAggregate" />
+                                    <dataGrid:GridSummaryColumn Name="Interest" Format="{}{Sum:C}" MappingName="Interest" SummaryType="DoubleAggregate" />
+                                    <dataGrid:GridSummaryColumn Name="Balance" Format="{}{Balance}" MappingName="Balance" SummaryType="Custom" CustomAggregate="{StaticResource customAggregate}" />
+                                </dataGrid:GridSummaryRow.SummaryColumns>
+                            </dataGrid:GridSummaryRow>
+                        </dataGrid:SfDataGrid.CaptionSummaryRow>
+                        <dataGrid:SfDataGrid.GroupColumnDescriptions>
+                            <dataGrid:GroupColumnDescription ColumnName="Month" Converter="{StaticResource PaymentDetailToMonthConverter}" />
+                        </dataGrid:SfDataGrid.GroupColumnDescriptions>
+                    </dataGrid:SfDataGrid>
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
+    </tabView:SfTabView>
+</ContentPage>

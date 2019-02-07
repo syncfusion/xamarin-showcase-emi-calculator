@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.ChartView" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" BackgroundColor="#1B1F35" xmlns:sfButton="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:AppendCurrencyConverter x:Key="AppendCurrencyConverter" />
+            <local:PercentageConverter x:Key="PercentageConverter" />
+            <local:DataToColorModelConverter x:Key="DataToColorModelConverter" />
+            <Style TargetType="StackLayout">
+                <Setter Property="Spacing" Value="0" />
+                <Setter Property="Margin" Value="0,0,0,20" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="CommonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#DAE1FF" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <OnPlatform x:Key="FontSize" x:TypeArguments="x:Double" Android="18" iOS="18" WinPhone="16" />
+            <Style TargetType="chart:SfChart">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid x:Name="Grid" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Break-up of Total Payment" FontSize="16" HorizontalOptions="FillAndExpand" Style="{StaticResource CommonLabelStyle}" />
+            <chart:SfChart Grid.Row="1" Grid.Column="0">
+                <chart:SfChart.Series>
+                    <chart:DoughnutSeries ItemsSource="{Binding TotalPaymentCollection}" XBindingPath="XValue" YBindingPath="YValue" DoughnutCoefficient="0.8" CircularCoefficient="1">
+                        <chart:DoughnutSeries.DoughnutCoefficient>
+                            <OnPlatform x:TypeArguments="x:Double" Android="0.8" iOS="0.8" WinPhone="0.5" />
+                        </chart:DoughnutSeries.DoughnutCoefficient>
+                        <chart:DoughnutSeries.ColorModel>
+                            <chart:ChartColorModel Palette="Custom" CustomBrushes="{Binding TotalPaymentCollection,Converter={StaticResource DataToColorModelConverter},ConverterParameter='PrincipalChart'}" />
+                        </chart:DoughnutSeries.ColorModel>
+                        <chart:DoughnutSeries.CenterView>
+                            <Label Text="{Binding BindingContext.TotalPrincipalAmount,Converter={StaticResource PercentageConverter},ConverterParameter={x:Reference Grid}}" Style="{StaticResource CommonLabelStyle}" TextColor="#FFFFFF" FontSize="{StaticResource FontSize}" />
+                        </chart:DoughnutSeries.CenterView>
+                    </chart:DoughnutSeries>
+                </chart:SfChart.Series>
+            </chart:SfChart>
+            <chart:SfChart Grid.Row="1" Grid.Column="1">
+                <chart:SfChart.Series>
+                    <chart:DoughnutSeries ItemsSource="{Binding TotalPaymentCollection}" XBindingPath="XValue" YBindingPath="YValue" DoughnutCoefficient="0.8" CircularCoefficient="1">
+                        <chart:DoughnutSeries.DoughnutCoefficient>
+                            <OnPlatform x:TypeArguments="x:Double" Android="0.8" iOS="0.8" WinPhone="0.5" />
+                        </chart:DoughnutSeries.DoughnutCoefficient>
+                        <chart:DoughnutSeries.ColorModel>
+                            <chart:ChartColorModel Palette="Custom" CustomBrushes="{Binding TotalPaymentCollection,Converter={StaticResource DataToColorModelConverter},ConverterParameter='InterestChart'}" />
+                        </chart:DoughnutSeries.ColorModel>
+                        <chart:DoughnutSeries.CenterView>
+                            <Label Text="{Binding BindingContext.TotalInterestAmount,Converter={StaticResource PercentageConverter},ConverterParameter={x:Reference Grid}}" Style="{StaticResource CommonLabelStyle}" TextColor="#FFFFFF" FontSize="{StaticResource FontSize}" />
+                        </chart:DoughnutSeries.CenterView>
+                    </chart:DoughnutSeries>
+                </chart:SfChart.Series>
+            </chart:SfChart>
+            <StackLayout Grid.Row="2" Grid.Column="0">
+                <Label Text="Total Principal Payable" Style="{StaticResource CommonLabelStyle}" />
+                <Label Text="{Binding TotalPrincipalAmount, Converter={StaticResource AppendCurrencyConverter}}" Style="{StaticResource CommonLabelStyle}" FontSize="20" />
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1">
+                <Label Text="Total Interest Payable" Style="{StaticResource CommonLabelStyle}" />
+                <Label Text="{Binding TotalInterestAmount, Converter={StaticResource AppendCurrencyConverter}}" Style="{StaticResource CommonLabelStyle}" FontSize="20" />
+            </StackLayout>
+            <BoxView Grid.Row="3" Grid.ColumnSpan="2" Color="#37416A" HorizontalOptions="Fill" />
+            <StackLayout Grid.Row="4" Grid.Column="0" Margin="0,20,0,20">
+                <Label Text="Total Payment" Style="{StaticResource CommonLabelStyle}" />
+                <Label Text="(Principal + Interest)" Style="{StaticResource CommonLabelStyle}" />
+                <Label Text="{Binding TotalPayment, Converter={StaticResource AppendCurrencyConverter}}" Style="{StaticResource CommonLabelStyle}" FontSize="20" />
+            </StackLayout>
+            <StackLayout Grid.Row="4" Grid.Column="1" Margin="0,20,0,20">
+                <Label Text="Monthly Payment" FontSize="15" Style="{StaticResource CommonLabelStyle}" />
+                <Label Text="{Binding MonthlyPayment, Converter={StaticResource AppendCurrencyConverter}}" TextColor="#4ACEDA" FontAttributes="Bold" FontSize="30" HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <sfButton:SfButton Grid.Row="5" Grid.Column="0" Text="SHARE" Command="{Binding ShareLoanDetailsCommand}" BackgroundColor="#475179" />
+            <sfButton:SfButton Grid.Row="5" Grid.Column="1" Text="STATISTICS DETAILS" Command="{Binding ViewStatisticsCommand}" BackgroundColor="#1F949F" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.InputView" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" BackgroundColor="#1B1F35" xmlns:segmentCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sfButton="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#DAE1FF" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Margin" Value="0,3,0,0" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style TargetType="local:CustomNumericUpDown">
+                <Setter Property="BackgroundColor" Value="#353D5D" />
+                <Setter Property="TextColor" Value="#C6D1FF" />
+                <Setter Property="BorderColor" Value="#353D5D" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button HeightRequest="0" WidthRequest="1" BackgroundColor="Transparent" />
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Principal Amount" Margin="0,3,0,0" HorizontalOptions="StartAndExpand" />
+            <local:CustomNumericUpDown Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Culture="{Binding CurrentUICulture}" Minimum="0" FormatString="c" MaximumDecimalDigits="0" Value="{Binding LoanAmount, Mode=TwoWay}" StepValue="20000">
+                <local:CustomNumericUpDown.IncrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Up.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.IncrementButtonSettings>
+                <local:CustomNumericUpDown.DecrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Down.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.DecrementButtonSettings>
+            </local:CustomNumericUpDown>
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Interest Rate" HorizontalOptions="StartAndExpand" />
+            <local:CustomNumericUpDown Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FormatString="p" Minimum="0" PercentDisplayMode="Value" StepValue="0.25" Value="{Binding Interest, Mode=TwoWay}">
+                <local:CustomNumericUpDown.IncrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Up.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.IncrementButtonSettings>
+                <local:CustomNumericUpDown.DecrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Down.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.DecrementButtonSettings>
+            </local:CustomNumericUpDown>
+            <Label Grid.Row="4" Grid.ColumnSpan="2" Text="Loan Term" HorizontalOptions="StartAndExpand" />
+            <local:CustomNumericUpDown Grid.Row="5" Grid.Column="0" Value="{Binding Term, Mode=TwoWay}" MaximumDecimalDigits="0" StepValue="1" Minimum="0">
+                <local:CustomNumericUpDown.IncrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Up.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.IncrementButtonSettings>
+                <local:CustomNumericUpDown.DecrementButtonSettings>
+                    <numericUpDown:UpDownButtonSettings>
+                        <numericUpDown:UpDownButtonSettings.ButtonView>
+                            <Image Source="{local:ImageResource LoanCalculator.Images.Down.png}" />
+                        </numericUpDown:UpDownButtonSettings.ButtonView>
+                    </numericUpDown:UpDownButtonSettings>
+                </local:CustomNumericUpDown.DecrementButtonSettings>
+            </local:CustomNumericUpDown>
+            <buttons:SfSegmentedControl Grid.Row="5" SegmentHeight="39" FontSize="15" Grid.Column="1" SelectedIndex="{Binding LoanTerm}" FontColor="#FFFFFF" SelectionTextColor="#F0FEFF" VisibleSegmentsCount="2" Color="#475179" BorderColor="Transparent">
+                <buttons:SfSegmentedControl.CornerRadius>
+                    <OnPlatform x:TypeArguments="x:Double" Android="0" iOS="6" WinPhone="0" />
+                </buttons:SfSegmentedControl.CornerRadius>
+                <segmentCollection:List x:TypeArguments="buttons:SfSegmentItem">
+                    <buttons:SfSegmentItem Text="Month" />
+                    <buttons:SfSegmentItem Text="Year" />
+                </segmentCollection:List>
+                <buttons:SfSegmentedControl.SelectionIndicatorSettings>
+                    <buttons:SelectionIndicatorSettings Color="#1F949F" />
+                </buttons:SfSegmentedControl.SelectionIndicatorSettings>
+            </buttons:SfSegmentedControl>
+            <sfButton:SfButton Grid.Row="7" Grid.Column="0" Text="RESET" Command="{Binding ResetValuesCommand}" TextColor="#DAE1FF" FontSize="15" BackgroundColor="#475179" />
+            <sfButton:SfButton Grid.Row="7" Grid.Column="1" Text="CALCULATE" Command="{Binding CalculatePaymentCommand}" TextColor="#DAE1FF" FontSize="15" BackgroundColor="#1F949F" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

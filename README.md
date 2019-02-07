@@ -38,7 +38,7 @@ This project uses the following Syncfusion controls:
 
 **Android**
 
-<img src="images/Android/home.png" Width="210" /> <img src="images/Android/chart.jpg" Width="210" /> <img src="images/Android/grid.png" Width="210" /> <img src="images/Android/share.png" Width="210" />
+<img src="images/Android/home.png" Width="210" /> <img src="images/Android/chart.png" Width="210" /> <img src="images/Android/grid.png" Width="210" /> <img src="images/Android/share.png" Width="210" />
 <img src="images/Android/excel.png" Width="210" />
 
 **iOS**

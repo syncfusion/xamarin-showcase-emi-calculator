@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.HomePage" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" xmlns:sys="clr-namespace:System;assembly=mscorlib" BackgroundColor="#1B1F35" Title="EMI CALCULATOR">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#DAE1FF" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <local:ScrollViewExt x:Name="Root">
+            <Grid>
+                <Grid x:Name="HorizontalView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.499*" />
+                        <ColumnDefinition Width="0.002*" />
+                        <ColumnDefinition Width="0.499*" />
+                    </Grid.ColumnDefinitions>
+                    <local:InputView Padding="25,10,25,0" HorizontalOptions="FillAndExpand" />
+                    <BoxView Grid.Column="1" Color="#37416A" HorizontalOptions="Fill" />
+                    <local:ChartView Grid.Column="2" Padding="40,10,40,0" HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <StackLayout x:Name="VerticalView" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <local:InputView HorizontalOptions="FillAndExpand" Padding="20" />
+                    <BoxView Color="#37416A" Margin="20,0,20,0" HeightRequest="2" VerticalOptions="Center" HorizontalOptions="Fill" />
+                    <local:ChartView HorizontalOptions="FillAndExpand" Padding="20" />
+                </StackLayout>
+            </Grid>
+        </local:ScrollViewExt>
+    </ContentPage.Content>
+</ContentPage>
