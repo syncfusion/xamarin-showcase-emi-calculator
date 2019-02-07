@@ -62,8 +62,8 @@ Please refer to the link for more information:
 
 This application uses following third party assemblies. 
 
-* Xamarin.Essentials
-* AutoFac
+* [Xamarin.Essentials](https://github.com/xamarin/Essentials)
+* [AutoFac](https://github.com/autofac/Autofac)
 
 ## Requirements to run the demo ##
 
@@ -90,7 +90,7 @@ This application uses following third party assemblies.
 
    Refer this [link](https://help.syncfusion.com/common/essential-studio/licensing/license-key#xamarinforms) for more information.
 
-3. Set any one of the platform specific projects (iOS, Android, UWP) as a startup project.
+3. Set any one of the platform specific projects (iOS, Android) as a startup project.
 4. Clean and build the application.
 5. Run the application.
 
