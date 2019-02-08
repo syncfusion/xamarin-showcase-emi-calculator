@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.4.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.4.0.52" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.4.0.52" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.4.0.52" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="16.4.0.52" />
