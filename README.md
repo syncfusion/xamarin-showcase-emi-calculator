@@ -12,7 +12,7 @@ The EMI (Equated Monthly Instalment) Calculator is an application developed usin
 * Localization
 * Styles
 * AutoFac for dependency injection
-* Phone, tablet and desktop layout
+* Phone and tablet layout
 
 ## Syncfusion Controls
 
