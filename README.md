@@ -14,6 +14,12 @@ The EMI (Equated Monthly Instalment) Calculator is an application developed usin
 * AutoFac for dependency injection
 * Phone and tablet layout
 
+## Build Status
+|CI Tool                    |Build Status|
+|---------------------------|---|
+| App Center, iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/ca1f283a-7255-45e4-8cf1-d2ce46cb4a0a/branches/master/badge)](https://appcenter.ms)|
+| App Center, Android | [![Build status](https://build.appcenter.ms/v0.1/apps/4e5e10f9-04aa-48ca-ba31-0a58da0c4c4d/branches/master/badge)](https://appcenter.ms) |
+
 ## Syncfusion Controls
 
 This project uses the following Syncfusion controls:
