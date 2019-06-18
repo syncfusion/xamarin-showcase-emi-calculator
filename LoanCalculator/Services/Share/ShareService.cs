@@ -16,7 +16,7 @@ namespace LoanCalculator
             string totalAmount = "Total Interest Payment : " + currencySymbol + " " + totalInterstAmount.ToString("N2", CultureInfo.InvariantCulture) + "\n";
             string payableAmount = "Total Amount (Principal + Interest): " + currencySymbol + " " + totalPricipalAmount.ToString("N2", CultureInfo.InvariantCulture) + "\n";
 
-            DataTransfer.RequestAsync(new ShareTextRequest
+            Share.RequestAsync(new ShareTextRequest
             {
                 Subject = "Loan Details",
                 Text = "Loan Details" + "\n\n" + principalAmount + interestPercent + loanTerm + emiAmountDetails + totalAmount + payableAmount,
