@@ -58,7 +58,7 @@ namespace LoanCalculator
             }
         }
 
-        public Task<Dictionary<string, object>> GetAmortizationDetails(double interest, double emi, double loanAmount, int term, LoanTermType termType, DateTime paymentStartMonth)
+        public async Task<Dictionary<string, object>> GetAmortizationDetails(double interest, double emi, double loanAmount, int term, LoanTermType termType, DateTime paymentStartMonth)
         {
             DateTime date = paymentStartMonth;
             double beginBalance, endBalance, currentInterest, totalEmiAmount = 0, totalPrincipal = 0, totalInterest = 0;
@@ -116,14 +116,11 @@ namespace LoanCalculator
                     date = date.AddMonths(1);
                 }
             }
-            return Task.Run(() =>
+            return new Dictionary<string, object>
             {
-                return new Dictionary<string, object>
-                  {
-                       { "monthlyDetails", monthlyPaymentDetails},
-                       { "yearlyDetails", yearlyPaymentDetails}
-                  };
-            });
+                { "monthlyDetails", monthlyPaymentDetails},
+                { "yearlyDetails", yearlyPaymentDetails}
+            };
         }
     }
 }
