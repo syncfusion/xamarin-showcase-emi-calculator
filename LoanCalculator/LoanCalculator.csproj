@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Down.png" />
     <EmbeddedResource Include="Images\Up.png" />
@@ -14,6 +16,7 @@
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.1.0.51" />

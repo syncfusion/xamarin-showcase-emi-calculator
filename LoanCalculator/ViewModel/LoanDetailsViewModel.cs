@@ -21,6 +21,7 @@ namespace LoanCalculator
         private IEMIService emiService;
         private IShareService shareService;
         private Dictionary<string, object> paymentDetails;
+        private bool isBusy = false;
         #endregion
 
         #region public properties
@@ -195,6 +196,11 @@ namespace LoanCalculator
                 OnPropertyChanged("MonthlyPayment");
             }
         }
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { isBusy=value; OnPropertyChanged("IsBusy"); }
+        }
 
         #region ObservableCollections
 
@@ -335,23 +341,29 @@ namespace LoanCalculator
                 paymentDetails.Add(key, value);
             }
         }
-
         public async Task InitializeAsync()
         {
+            IsBusy = true;
+            await Task.Delay(1000); //To avoid freezing application while navigate from one page to another page.
             if (Interest.Equals(0) || LoanAmount.Equals(0) || Term.Equals(0))
             {
                 Validation();
+                IsBusy = false;
                 return;
             }
-
             Calculate();
-            paymentDetails = emiService.GetAmortizationDetails(Interest, MonthlyPayment, LoanAmount, Term, TermType, PaymentStartMonth);
+            paymentDetails = await emiService.GetAmortizationDetails(Interest, MonthlyPayment, LoanAmount, Term, TermType, PaymentStartMonth);
             AddValueKeyPair("loanAmount", LoanAmount);
             AddValueKeyPair("interest", Interest);
             AddValueKeyPair("emi", MonthlyPayment);
             AddValueKeyPair("term", Term);
             AddValueKeyPair("termType", TermType);
-            await NavigationService.NavigateToAsync<StatisticPageViewModel>(paymentDetails);
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await NavigationService.NavigateToAsync<StatisticPageViewModel>(paymentDetails);
+                IsBusy = false;
+            });
         }
     }
     #endregion

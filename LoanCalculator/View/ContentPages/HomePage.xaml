@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.HomePage" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" xmlns:sys="clr-namespace:System;assembly=mscorlib" BackgroundColor="#1B1F35" Title="EMI CALCULATOR">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="LoanCalculator.HomePage" 
+             xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:sync="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"      
+             xmlns:converter="clr-namespace:LoanCalculator.Converters"
+             BackgroundColor="#1B1F35"
+             Title="EMI CALCULATOR">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:BoolToDoubleConverter x:Key="BoolToDoubleConverter"/>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="#DAE1FF" />
                 <Setter Property="FontSize" Value="15" />
@@ -10,9 +19,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <local:ScrollViewExt x:Name="Root">
+        <AbsoluteLayout>
+            <local:ScrollViewExt x:Name="Root" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <Grid>
-                <Grid x:Name="HorizontalView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid x:Name="HorizontalView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Opacity="{Binding IsBusy,Converter={StaticResource BoolToDoubleConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
@@ -25,12 +35,14 @@
                     <BoxView Grid.Column="1" Color="#37416A" HorizontalOptions="Fill" />
                     <local:ChartView Grid.Column="2" Padding="40,10,40,0" HorizontalOptions="FillAndExpand" />
                 </Grid>
-                <StackLayout x:Name="VerticalView" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="VerticalView" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="{Binding IsBusy,Converter={StaticResource BoolToDoubleConverter}}">
                     <local:InputView HorizontalOptions="FillAndExpand" Padding="20" />
                     <BoxView Color="#37416A" Margin="20,0,20,0" HeightRequest="2" VerticalOptions="Center" HorizontalOptions="Fill" />
                     <local:ChartView HorizontalOptions="FillAndExpand" Padding="20" />
                 </StackLayout>
             </Grid>
         </local:ScrollViewExt>
+            <sync:SfBusyIndicator AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AnimationType="SingleCircle" Title="Please Wait.." IsBusy="{Binding IsBusy,Mode=TwoWay}"></sync:SfBusyIndicator>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LoanCalculator
 {
@@ -11,6 +12,6 @@ namespace LoanCalculator
 
         double GetPayablePrincipalAmount(int term, LoanTermType termType);
 
-        Dictionary<string, object> GetAmortizationDetails(double loanAmount, double interest, double emi, int term, LoanTermType termType, DateTime paymentStartMonth);
+        Task<Dictionary<string, object>> GetAmortizationDetails(double loanAmount, double interest, double emi, int term, LoanTermType termType, DateTime paymentStartMonth);
     }
 }
