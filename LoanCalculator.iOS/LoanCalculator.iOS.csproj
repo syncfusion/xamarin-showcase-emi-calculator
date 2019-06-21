@@ -168,9 +168,6 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
       <Version>17.1.0.51</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
-      <Version>17.1.0.51</Version>
-    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
       <Version>17.1.0.51</Version>
     </PackageReference>
