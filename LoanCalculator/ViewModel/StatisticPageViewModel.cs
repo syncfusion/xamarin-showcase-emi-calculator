@@ -128,7 +128,7 @@ namespace LoanCalculator
             pickerSelectedItem.Add(PaymentStartMonth.Year.ToString());
         }
 
-        private async void PaymentStartDateChanged()
+        private void PaymentStartDateChanged()
         {
             int selectedItemYear = int.Parse((PickerSelectedItem as ObservableCollection<object>)[1].ToString()), selectedItemMonth = DateTime.ParseExact((PickerSelectedItem as ObservableCollection<object>)[0].ToString(), "MMM", CultureInfo.CurrentCulture).Month;
             PaymentStartMonth = new DateTime(selectedItemYear, selectedItemMonth, 1);
@@ -136,7 +136,7 @@ namespace LoanCalculator
             PaymentStartDate = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(PaymentStartMonth.Month).Substring(0, 3);
             PaymentStartDate += " " + PaymentStartMonth.Year.ToString();
 
-            paymentDetails = await emiService.GetAmortizationDetails(interest, emiAmount, loanAmount, (int)term, termType, PaymentStartMonth);
+            paymentDetails = emiService.GetAmortizationDetails(interest, emiAmount, loanAmount, (int)term, termType, PaymentStartMonth);
             MonthlyPaymentDetails = (ObservableCollection<MonthlyPaymentDetail>)paymentDetails["monthlyDetails"];
             YearlyPaymentDetails = (ObservableCollection<YearlyPaymentDetail>)paymentDetails["yearlyDetails"];
         }

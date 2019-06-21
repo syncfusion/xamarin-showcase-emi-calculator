@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace LoanCalculator
 {
@@ -58,7 +57,7 @@ namespace LoanCalculator
             }
         }
 
-        public async Task<Dictionary<string, object>> GetAmortizationDetails(double interest, double emi, double loanAmount, int term, LoanTermType termType, DateTime paymentStartMonth)
+        public Dictionary<string, object> GetAmortizationDetails(double interest, double emi, double loanAmount, int term, LoanTermType termType, DateTime paymentStartMonth)
         {
             DateTime date = paymentStartMonth;
             double beginBalance, endBalance, currentInterest, totalEmiAmount = 0, totalPrincipal = 0, totalInterest = 0;

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.StatisticPage" xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" xmlns:dataGrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" Icon="Date.png" Title="Amortization Details" BackgroundColor="#252C48">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="LoanCalculator.StatisticPage" 
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
+             xmlns:dataGrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+             xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" 
+             Icon="Date.png" 
+             Title="Amortization Details" 
+             BackgroundColor="#252C48">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="Export.png" Order="Primary" Priority="0" Command="{Binding ExportStatisticsCommand}" CommandParameter="{Binding Source={x:Reference DataGrid}}">
             <ToolbarItem.Text>
@@ -194,7 +203,7 @@
         </tabView:SfTabItem>
         <tabView:SfTabItem Title="Schedule" TitleFontColor="{StaticResource TabItemFontColor}" TitleFontSize="{StaticResource TabItemFontSize}" SelectionColor="{StaticResource TabItemFontColor}">
             <tabView:SfTabItem.Content>
-                    <dataGrid:SfDataGrid x:Name="DataGrid" ItemsSourceChanged="DataGrid_ItemsSourceChanged"  AutoExpandGroups="False" ItemsSource="{Binding MonthlyPaymentDetails}" ColumnSizer="Star" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" GroupingMode="Multiple">
+                <dataGrid:SfDataGrid x:Name="DataGrid" BackgroundColor="#1B1F35" ItemsSourceChanged="DataGrid_ItemsSourceChanged"  AutoExpandGroups="False" ItemsSource="{Binding MonthlyPaymentDetails}" ColumnSizer="Star" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" GroupingMode="Multiple">
                         <dataGrid:SfDataGrid.Resources>
                             <ResourceDictionary>
                                 <local:PaymentDetailToMonthConverter x:Key="PaymentDetailToMonthConverter" />

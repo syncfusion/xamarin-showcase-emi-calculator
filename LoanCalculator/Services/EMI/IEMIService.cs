@@ -12,6 +12,6 @@ namespace LoanCalculator
 
         double GetPayablePrincipalAmount(int term, LoanTermType termType);
 
-        Task<Dictionary<string, object>> GetAmortizationDetails(double loanAmount, double interest, double emi, int term, LoanTermType termType, DateTime paymentStartMonth);
+        Dictionary<string, object> GetAmortizationDetails(double loanAmount, double interest, double emi, int term, LoanTermType termType, DateTime paymentStartMonth);
     }
 }
