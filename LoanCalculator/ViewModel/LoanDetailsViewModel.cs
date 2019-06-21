@@ -335,6 +335,7 @@ namespace LoanCalculator
                 paymentDetails.Add(key, value);
             }
         }
+
         public async Task InitializeAsync()
         {
             if (Interest.Equals(0) || LoanAmount.Equals(0) || Term.Equals(0))
@@ -342,6 +343,7 @@ namespace LoanCalculator
                 Validation();
                 return;
             }
+
             Calculate();
             paymentDetails = emiService.GetAmortizationDetails(Interest, MonthlyPayment, LoanAmount, Term, TermType, PaymentStartMonth);
             AddValueKeyPair("loanAmount", LoanAmount);
@@ -349,7 +351,6 @@ namespace LoanCalculator
             AddValueKeyPair("emi", MonthlyPayment);
             AddValueKeyPair("term", Term);
             AddValueKeyPair("termType", TermType);
-
             await NavigationService.NavigateToAsync<StatisticPageViewModel>(paymentDetails);
         }
     }

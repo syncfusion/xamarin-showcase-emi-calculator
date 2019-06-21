@@ -115,6 +115,7 @@ namespace LoanCalculator
                     date = date.AddMonths(1);
                 }
             }
+
             return new Dictionary<string, object>
             {
                 { "monthlyDetails", monthlyPaymentDetails},
