@@ -3,7 +3,7 @@ using Android.OS;
 
 namespace LoanCalculator.Droid
 {
-	[Activity(Theme = "@style/Theme.Splash",
+	[Activity(Label = "@string/app_name", Theme = "@style/Theme.Splash",
               MainLauncher = true,
               NoHistory = true, Icon = "@drawable/Icon")]
 	public class SplashActivity : Activity
@@ -13,6 +13,6 @@ namespace LoanCalculator.Droid
 			base.OnCreate(bundle);
 			System.Threading.Thread.Sleep(100);
 			this.StartActivity(typeof(MainActivity));
-		}
+        }
 	}
 }
