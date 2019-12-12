@@ -6,7 +6,7 @@ The EMI (Equated Monthly Instalment) Calculator is an application developed usin
 * Converters
 * Custom controls
 * Data binding
-* Behaviours
+* Behaviors
 * MVVM
 * Xamarin.Essentials 
 * Localization
