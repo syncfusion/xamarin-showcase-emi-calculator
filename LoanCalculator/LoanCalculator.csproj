@@ -19,7 +19,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.XlsIO" Version="17.1.0.51" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.910310" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="17.1.0.51" />
     <PackageReference Include="Autofac" Version="4.9.2" />

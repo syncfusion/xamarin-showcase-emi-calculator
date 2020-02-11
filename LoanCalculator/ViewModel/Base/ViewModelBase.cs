@@ -19,7 +19,7 @@ namespace LoanCalculator
         #region constructor
         protected ViewModelBase()
         {
-            NavigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
+            NavigationService = ViewModelLocator.Resolve<INavigationService>();
         }
         #endregion
 
