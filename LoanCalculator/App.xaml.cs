@@ -25,12 +25,12 @@ namespace LoanCalculator
 
         private static void IntializeBuildContainer()
         {
-            ViewModelLocator.Instance.Build();
+            ViewModelLocator.Start();
         }
 
         private Task InitNavigation()
         {
-            var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
+            var navigationService = ViewModelLocator.Resolve<INavigationService>();
             return navigationService.NavigateAppAsync<LoanDetailsViewModel>();
         }
 

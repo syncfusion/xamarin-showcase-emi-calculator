@@ -183,7 +183,7 @@
     <PackageReference Include="Syncfusion.Xamarin.XlsIO">
       <Version>17.1.0.51</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.910310" />
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.1.0</Version>
     </PackageReference>

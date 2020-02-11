@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using Autofac.Core;
 
 namespace LoanCalculator
 {
@@ -7,7 +8,9 @@ namespace LoanCalculator
     {
         private IContainer container;
 
-        private readonly ContainerBuilder containerBuilder;
+        private static ILifetimeScope _rootScope;
+
+        private static ContainerBuilder containerBuilder;
 
         private static readonly ViewModelLocator ViewModelLocatorInstance = new ViewModelLocator();
 
@@ -19,7 +22,7 @@ namespace LoanCalculator
             }
         }
 
-        public ViewModelLocator()
+        public static void Start()
         {
             containerBuilder = new ContainerBuilder();
 
@@ -31,21 +34,25 @@ namespace LoanCalculator
 
             containerBuilder.RegisterType<LoanDetailsViewModel>();
             containerBuilder.RegisterType<StatisticPageViewModel>();
-        }
 
-        public T Resolve<T>()
-        {
-            return container.Resolve<T>();
+            _rootScope = containerBuilder.Build();
         }
 
         public object Resolve(Type type)
         {
-            return container.Resolve(type);
+            return _rootScope?.Resolve(type);
         }
 
-        public void Build()
+        public static T Resolve<T>()
         {
-            container = containerBuilder?.Build();
+            if (_rootScope == null) throw new Exception("Bootstrapper hasn't been started!");
+            return _rootScope.Resolve<T>(new Parameter[0]);
+        }
+
+        public static T Resolve<T>(Parameter[] parameters)
+        {
+            if (_rootScope == null) throw new Exception("Bootstrapper hasn't been started!");
+            return _rootScope.Resolve<T>(parameters);
         }
     }
 }
