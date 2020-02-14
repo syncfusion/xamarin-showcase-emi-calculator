@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LoanCalculator.HomePage" xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" xmlns:sys="clr-namespace:System;assembly=mscorlib" BackgroundColor="#1B1F35" Title="EMI CALCULATOR">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="LoanCalculator.HomePage" 
+             xmlns:local="clr-namespace:LoanCalculator;assembly=LoanCalculator" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:sync="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"      
+             BackgroundColor="#1B1F35"
+             Title="EMI CALCULATOR">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">

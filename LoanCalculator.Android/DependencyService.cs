@@ -57,11 +57,13 @@ namespace LoanCalculator.Droid
                 string extension = Android.Webkit.MimeTypeMap.GetFileExtensionFromUrl(Android.Net.Uri.FromFile(file).ToString());
                 string mimeType = Android.Webkit.MimeTypeMap.Singleton.GetMimeTypeFromExtension(extension);
                 Intent intent = new Intent(Intent.ActionView);
+                intent.AddFlags(ActivityFlags.NewTask);
+                intent.AddFlags(ActivityFlags.MultipleTask);
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
                 Android.Net.Uri path = FileProvider.GetUriForFile(Android.App.Application.Context, Android.App.Application.Context.PackageName + ".provider", file);
                 intent.SetDataAndType(path, mimeType);
                 intent.AddFlags(ActivityFlags.GrantReadUriPermission);
-                Android.App.Application.Context.StartActivity(Intent.CreateChooser(intent, "Choose App"));
+                Android.App.Application.Context.StartActivity(intent);
             }
         }
 

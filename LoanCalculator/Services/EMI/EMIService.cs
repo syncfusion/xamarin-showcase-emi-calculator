@@ -35,13 +35,13 @@ namespace LoanCalculator
         public double GetPayableInterestAmount(int term, LoanTermType termType, double loanAmount)
         {
             tenure = (termType == LoanTermType.Years) ? (term * 12) : term;
-            return Math.Round((currentEMI * tenure) - loanAmount);
+            return Math.Round(((currentEMI * tenure) - loanAmount),2);
         }
 
         public double GetPayablePrincipalAmount(int term, LoanTermType termType)
         {
             tenure = (termType == LoanTermType.Years) ? (term * 12) : term;
-            return Math.Round(currentEMI * tenure);
+            return Math.Round((currentEMI * tenure),2);
         }
 
         private void ResetCollections()
@@ -82,10 +82,10 @@ namespace LoanCalculator
                 monthlyPaymentDetails.Add(
                     new MonthlyPaymentDetail
                     {
-                        Principal = Math.Round(emi - currentInterest),
-                        Interest = Math.Round(currentInterest),
-                        Balance = Math.Round(endBalance),
-                        Payment = Math.Round(emi),
+                        Principal = Math.Round((emi - currentInterest),2),
+                        Interest = Math.Round((currentInterest),2),
+                        Balance = Math.Round((endBalance),2),
+                        Payment = Math.Round((emi),2),
                         Month = new DateTime(date.Year, date.Month, date.Day)
                     });
                 if (i == 0 || date.Month == 1)
@@ -98,10 +98,10 @@ namespace LoanCalculator
                     yearlyPaymentDetails.Add(
                         new YearlyPaymentDetail
                         {
-                            Principal = Math.Round(prncPaidPerYear),
-                            Interest = Math.Round(totalInterestYear),
-                            Balance = Math.Round(endBalance),
-                            Payment = Math.Round(emiPaidPerYear),
+                            Principal = Math.Round((prncPaidPerYear),2),
+                            Interest = Math.Round((totalInterestYear),2),
+                            Balance = Math.Round((endBalance),2),
+                            Payment = Math.Round((emiPaidPerYear),2),
                             Year = new DateTime(date.Year, date.Month, date.Day)
                         });
                     emiPaidPerYear = 0;
